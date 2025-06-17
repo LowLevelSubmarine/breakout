@@ -1,0 +1,16 @@
+name: breakout
+description: "Let widgets break out of their padded areas"
+version: 1.0.0-dev.0
+
+environment:
+  sdk: ^3.7.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
