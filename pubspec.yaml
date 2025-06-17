@@ -1,6 +1,8 @@
 name: breakout
 description: "Let widgets break out of their padded areas"
 version: 1.0.0-dev.0
+homepage: https://github.com/LowLevelSubmarine/breakout
+repository: https://github.com/LowLevelSubmarine/breakout
 
 environment:
   sdk: ^3.7.2
