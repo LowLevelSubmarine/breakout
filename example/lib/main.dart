@@ -31,37 +31,32 @@ class _MainAppState extends State<MainApp> {
         body: CustomScrollView(
           controller: _scrollController,
           slivers: [
-            Breakoutable(
-              insets: HorizontalBreakoutInsets(start: 40, end: 40),
+            BreakoutArea(
+              insets: BreakoutInsets.horizontal(40),
               child: SliverSafeArea(
-                minimum: EdgeInsets.symmetric(horizontal: 40),
                 sliver: SliverPadding(
-                  padding: const EdgeInsets.symmetric(vertical: 40),
+                  padding: EdgeInsets.symmetric(vertical: 40),
                   sliver: SliverList.list(
                     children: [
-                      Text(loremIpsum),
+                      Bounded(child: Text(loremIpsum)),
                       SizedBox(height: 40),
-                      Breakout(
-                        child: ParallaxImageBanner(
-                          image: AssetImage(
-                            'assets/florian-weichert-CJpET6f24nI-unsplash.jpg',
-                          ),
+                      ParallaxImageBanner(
+                        image: AssetImage(
+                          'assets/florian-weichert-CJpET6f24nI-unsplash.jpg',
                         ),
                       ),
                       SizedBox(height: 40),
-                      Text(loremIpsum),
+                      Bounded(child: Text(loremIpsum)),
                       SizedBox(height: 40),
-                      Breakout(
-                        child: ParallaxImageBanner(
-                          image: AssetImage(
-                            'assets/florian-weichert-gqxjcLXfms4-unsplash.jpg',
-                          ),
+                      ParallaxImageBanner(
+                        image: AssetImage(
+                          'assets/florian-weichert-gqxjcLXfms4-unsplash.jpg',
                         ),
                       ),
                       SizedBox(height: 40),
-                      Text(loremIpsum),
+                      Bounded(child: Text(loremIpsum)),
                       SizedBox(height: 40),
-                      Text(loremIpsum),
+                      Bounded(child: Text(loremIpsum)),
                     ],
                   ),
                 ),
@@ -81,17 +76,11 @@ class ParallaxImageBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scrollController =
-        context.findAncestorStateOfType<_MainAppState>()!._scrollController;
     return GestureDetector(
-      child: ListenableBuilder(
-        listenable: scrollController,
-        builder: (context, _) {
-          return AspectRatio(
-            aspectRatio: 3 / 1,
-            child: Image(image: image, fit: BoxFit.cover),
-          );
-        },
+      onTap: () => print('Image tapped!'),
+      child: AspectRatio(
+        aspectRatio: 3 / 1,
+        child: Image(image: image, fit: BoxFit.cover),
       ),
     );
   }

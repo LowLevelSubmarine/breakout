@@ -3,31 +3,28 @@ Allows widgets to break out of their padded area and ignore the padding set by t
 ![Screenshot](screenshot.png)
 
 # Disclaimer
-This package is still early in development. Hit test behaviour does not work outside the space the `Breakout` widget is in. It uses overflow to achieve the breakout effect, which means that it may not work as expected in all cases. If you have any suggestions for alternative approaches, please open an issue.
+This package is still early in development. The API may change in the future, and there may be bugs or missing features. I don't really like that you have to manually wrap each widget that should not break out, but I haven't found a better solution yet. Another one i was considering in the previous versions (1.0.0-dev.0 and 1.0.0-dev.1) didn't need the manual wrapping, but was making use of overflows which is not recommended by the Flutter team and can lead to unexpected behavior. So I decided to go with this approach for now. If you have any suggestions for alternative approaches, please open an issue.
 
 # Getting Started
-To make a widget breakout you simply need to wrap it in a `Breakout` widget. For example:
+To make a widget breakout you simply need to not wrap it in a `Bounded` widget. For example:
 ```dart
 Widget build(BuildContext context) {
   return SliverList.list(
     children: [
-      Text('some text'),
-      Breakout(
-        child: Text('breakout text'),
-      ),
-      Text('some more text'),
+      Bounded(child: Text('some text')),
+      Text('breakout text'),
+      Bounded(child: Text('some more text')),
     ],
   );
 }
 ```
 
-But the `Breakout` widget needs to know where to break out from. This is done by providing a `Breakoutable` widget in the parent widget. For example:
+But the `Bounded` widget needs to know what padding to apply to the children. You can do this by passing a `Breakoutable` widget with the desired insets. For example, if you want to break out of 40 pixels on the left and right sides, you can do it like this:
 ```dart
 Widget build(BuildContext context) {
-  return Breakoutable(
-    insets: HorizontalBreakoutInsets(start: 40, end: 40),
+  return BreakoutArea(
+    insets: BreakoutInsets.horizontal(40),
     child: /* your content ... */,
   );
 }
 ```
-Make sure that the insets passed to the `Breakoutable` match the padding you want to break out of.
