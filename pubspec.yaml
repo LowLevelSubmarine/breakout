@@ -1,6 +1,6 @@
 name: breakout
-description: "Let widgets break out of their padded areas"
-version: 1.0.0-dev.1
+description: "Create widgets that break out of their padded area"
+version: 1.0.0-dev.2
 homepage: https://github.com/LowLevelSubmarine/breakout
 repository: https://github.com/LowLevelSubmarine/breakout
 
